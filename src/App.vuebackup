@@ -1,0 +1,37 @@
+<script>
+
+
+export default{
+  data(){
+    return{
+      datasensor: "0"
+    }
+  },
+  created(){
+    this.sambutan(),
+    this.isi()
+  },
+  methods:{
+    sambutan(){
+      alert("Selamat Datang");
+    },
+    isi(){
+      alert("Silahkan isi keluhan anda disini");
+    },
+    async updata(){
+      const data = await fetch("http://127.0.0.1:82/sensor2")
+      const datanya = await data.json()
+      this.datasensor = datanya.postData
+    }
+  }
+}
+//tempat ngoding javascript
+</script>
+
+<template>
+<!----tempat ngoding html-->
+  <div>  Halo silahkan klik tombol Dapatkan untuk mendapatkan tiket aduan</div>
+  <button @click="updata">Dapatkan</button>
+  <div>Aduan anda berada pada antrian {{ datasensor }}</div>
+</template>
+
